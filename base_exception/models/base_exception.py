@@ -63,7 +63,6 @@ class ExceptionRule(models.Model):
                     )
                 )
 
-    @api.multi
     def _get_domain(self):
         """ override me to customize domains according exceptions cases """
         self.ensure_one()
@@ -74,7 +73,6 @@ class BaseExceptionMethod(models.AbstractModel):
     _name = "base.exception.method"
     _description = "Exception Rule Methods"
 
-    @api.multi
     def _get_main_records(self):
         """
             Used in case we check exceptions on a record but write these
@@ -84,7 +82,6 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         return self
 
-    @api.multi
     def _reverse_field(self):
         raise NotImplementedError()
 
@@ -95,7 +92,6 @@ class BaseExceptionMethod(models.AbstractModel):
         """
         return [("model", "=", self._name)]
 
-    @api.multi
     def detect_exceptions(self):
         """List all exception_ids applied on self
         Exception ids are also written on records
@@ -171,7 +167,6 @@ class BaseExceptionMethod(models.AbstractModel):
             )
         return space.get("failed", False)
 
-    @api.multi
     def _detect_exceptions(self, rule):
         if rule.exception_type == "by_py_code":
             return self._detect_exceptions_by_py_code(rule)
@@ -180,11 +175,9 @@ class BaseExceptionMethod(models.AbstractModel):
         elif rule.exception_type == "by_method":
             return self._detect_exceptions_by_method(rule)
 
-    @api.multi
     def _get_base_domain(self):
         return [("ignore_exception", "=", False), ("id", "in", self.ids)]
 
-    @api.multi
     def _detect_exceptions_by_py_code(self, rule):
         """
             Find exceptions found on self.
@@ -197,7 +190,6 @@ class BaseExceptionMethod(models.AbstractModel):
                 records_with_exception |= record
         return records_with_exception
 
-    @api.multi
     def _detect_exceptions_by_domain(self, rule):
         """
             Find exceptions found on self.
@@ -207,7 +199,6 @@ class BaseExceptionMethod(models.AbstractModel):
         domain = osv.expression.AND([base_domain, rule_domain])
         return self.search(domain)
 
-    @api.multi
     def _detect_exceptions_by_method(self, rule):
         """
             Find exceptions found on self.
@@ -237,7 +228,6 @@ class BaseException(models.AbstractModel):
     )
     ignore_exception = fields.Boolean("Ignore Exceptions", copy=False)
 
-    @api.multi
     def action_ignore_exceptions(self):
         self.write({"ignore_exception": True})
         return True
@@ -262,7 +252,6 @@ class BaseException(models.AbstractModel):
                     ]
                 )
 
-    @api.multi
     def _popup_exceptions(self):
         action = self._get_popup_action().read()[0]
         action.update(
@@ -280,7 +269,6 @@ class BaseException(models.AbstractModel):
     def _get_popup_action(self):
         return self.env.ref("base_exception.action_exception_rule_confirm")
 
-    @api.multi
     def _check_exception(self):
         """
         This method must be used in a constraint that must be created in the

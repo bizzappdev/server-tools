@@ -48,26 +48,21 @@ class PurchaseTest(models.Model):
         if orders:
             orders._check_exception()
 
-    @api.multi
     def button_approve(cls, force=False):
         cls.write({"state": "to approve"})
         return {}
 
-    @api.multi
     def button_draft(cls):
         cls.write({"state": "draft"})
         return {}
 
-    @api.multi
     def button_confirm(cls):
         cls.write({"state": "purchase"})
         return True
 
-    @api.multi
     def button_cancel(cls):
         cls.write({"state": "cancel"})
 
-    @api.multi
     def _reverse_field(self):
         return "test_purchase_ids"
 
