@@ -64,7 +64,6 @@ msgstr "Formato de copia de Seguridad"
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_0_ir_actions_server
-#: model:ir.cron,cron_name:auto_backup.ir_cron_backup_scheduler_0
 msgid "Backup Scheduler"
 msgstr "Planificador de Copia de Seguridad"
 
@@ -93,16 +92,6 @@ msgid "Cannot duplicate a configuration."
 msgstr "No se puede duplicar una configuración."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_change_ids
-msgid "Changeset Changes"
-msgstr "Cambios en el conjunto de modificaciones"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__changeset_ids
-msgid "Changesets"
-msgstr "Conjuntos de cambios"
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
 msgid "Choose the format for this backup."
 msgstr "Elija el formato para esta copia de seguridad."
@@ -115,40 +104,14 @@ msgstr "Elija el método de almacenamiento para esta copia de seguridad."
 #. module: auto_backup
 #. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
-#, python-format
-msgid "Cleanup of old database backups failed."
-msgstr ""
-"La limpieza de las copias de seguridad de las bases de datos antiguas ha "
-"fallado."
-
-#. module: auto_backup
-#. odoo-python
-#: code:addons/auto_backup/models/db_backup.py:0
-#, python-format
 msgid "Connection Test Failed!"
 msgstr "Error en la prueba de conexión!"
 
 #. module: auto_backup
 #. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
-#, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Prueba de conexión correcta!"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_changesets
-msgid "Count Changesets"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr "Contar los cambios del conjunto de cambios pendientes"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__count_pending_changesets
-msgid "Count Pending Changesets"
-msgstr "Contar Conjuntos de Cambios Pendientes"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
@@ -166,10 +129,7 @@ msgid "Database Backup"
 msgstr "Copia de seguridad de la base de datos"
 
 #. module: auto_backup
-#. odoo-python
-#: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
-#, python-format
 msgid "Database backup failed."
 msgstr "La copia de seguridad de la base de datos ha fallado."
 
@@ -177,7 +137,6 @@ msgstr "La copia de seguridad de la base de datos ha fallado."
 #. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
-#, python-format
 msgid "Database backup succeeded."
 msgstr "La copia de seguridad de la base de datos se realizo correctamente."
 
@@ -194,7 +153,6 @@ msgstr "Nombre a mostrar"
 #. module: auto_backup
 #. odoo-python
 #: code:addons/auto_backup/models/db_backup.py:0
-#, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
@@ -270,11 +228,6 @@ msgid "Is Follower"
 msgstr "Es Seguidor"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
-msgid "Last Modified on"
-msgstr "Última actualización por"
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -288,11 +241,6 @@ msgstr "Última actualización el"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__method__local
 msgid "Local disk"
 msgstr "Disco local"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Archivo Adjunto Principal"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error
@@ -392,11 +340,6 @@ msgstr ""
 "copias de seguridad generadas."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__smart_search
-msgid "Smart Search"
-msgstr ""
-
-#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "Resumen de este proceso de copia de seguridad"
@@ -413,21 +356,6 @@ msgid ""
 msgstr ""
 "El nombre del host o la dirección IP de su servidor remoto. Por ejemplo "
 "192.168.0.1"
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changeset_changes
-msgid "The number of pending changes of this record"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__count_pending_changesets
-msgid "The number of pending changesets of this record"
-msgstr ""
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__count_changesets
-msgid "The overall number of changesets of this record"
-msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
@@ -462,11 +390,6 @@ msgstr ""
 "ruta que especifique."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__user_can_see_changeset
-msgid "User Can See Changeset"
-msgstr "El Usuario Puede Ver el Conjunto de Cambios"
-
-#. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "Nombre del usuario en el servidor SFTP"
@@ -475,16 +398,6 @@ msgstr "Nombre del usuario en el servidor SFTP"
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Warning:"
 msgstr "Advertencia:"
-
-#. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
-msgid "Website Messages"
-msgstr "Mensajes del Sitio Web"
-
-#. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
-msgid "Website communication history"
-msgstr "Historial de la comunicación del sitio web"
 
 #. module: auto_backup
 #: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -505,6 +418,39 @@ msgstr "sftp.example.com"
 #: model:ir.model.fields.selection,name:auto_backup.selection__db_backup__backup_format__zip
 msgid "zip (includes filestore)"
 msgstr "zip (incluye almacén de archivos)"
+
+#~ msgid "Changeset Changes"
+#~ msgstr "Cambios en el conjunto de modificaciones"
+
+#~ msgid "Changesets"
+#~ msgstr "Conjuntos de cambios"
+
+#, python-format
+#~ msgid "Cleanup of old database backups failed."
+#~ msgstr ""
+#~ "La limpieza de las copias de seguridad de las bases de datos antiguas ha "
+#~ "fallado."
+
+#~ msgid "Count Pending Changeset Changes"
+#~ msgstr "Contar los cambios del conjunto de cambios pendientes"
+
+#~ msgid "Count Pending Changesets"
+#~ msgstr "Contar Conjuntos de Cambios Pendientes"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última actualización por"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Archivo Adjunto Principal"
+
+#~ msgid "User Can See Changeset"
+#~ msgstr "El Usuario Puede Ver el Conjunto de Cambios"
+
+#~ msgid "Website Messages"
+#~ msgstr "Mensajes del Sitio Web"
+
+#~ msgid "Website communication history"
+#~ msgstr "Historial de la comunicación del sitio web"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren un acción"
