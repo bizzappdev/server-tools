@@ -15,7 +15,7 @@ class VacuumRule(models.Model):
         required=True,
     )
     filename_pattern = fields.Char(
-        help=("If set, only attachments containing this pattern will be" " deleted.")
+        help=("If set, only attachments containing this pattern will be deleted.")
     )
     inheriting_model = fields.Char(
         help="If set, this model will be searched and only related attachments will "
