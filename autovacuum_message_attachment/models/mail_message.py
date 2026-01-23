@@ -4,7 +4,7 @@
 from datetime import timedelta
 
 from odoo import fields, models
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class MailMessage(models.Model):
@@ -35,4 +35,4 @@ class MailMessage(models.Model):
             domains.append([("subtype_id", "in", subtype_ids)])
         elif not subtype_ids and not rule.empty_subtype:
             domains.append([("subtype_id", "!=", False)])
-        return expression.AND(domains)
+        return Domain.AND(domains)

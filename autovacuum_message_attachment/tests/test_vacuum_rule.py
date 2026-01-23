@@ -23,16 +23,10 @@ class TestVacuumRule(common.TransactionCase):
         }
         return self.message_obj.create(vals)
 
-    def tearDown(self):
-        self.registry.leave_test_mode()
-        super().tearDown()
-
     def setUp(self):
         super().setUp()
-        self.registry.enter_test_mode(self.env.cr)
-        self.env = api.Environment(
-            self.registry.test_cr, self.env.uid, self.env.context
-        )
+        self.registry_enter_test_mode()
+        self.env = api.Environment(self.cr, self.env.uid, self.env.context)
         self.subtype = self.env.ref("mail.mt_comment")
         self.message_obj = self.env["mail.message"]
         self.attachment_obj = self.env["ir.attachment"]

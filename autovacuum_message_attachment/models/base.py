@@ -12,5 +12,5 @@ class Base(models.AbstractModel):
         "res_id",
         string="Assigned Attachments",
         domain=lambda self: [("res_model", "=", self._name)],
-        auto_join=True,
+        bypass_search_access=True,
     )
