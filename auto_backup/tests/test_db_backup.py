@@ -92,7 +92,7 @@ class TestDbBackup(common.TransactionCase):
                 }
             )
 
-    @patch(f"{model}._")
+    @patch(f"{model}.api.Environment._")
     def test_action_sftp_test_connection_success(self, _):
         """It should raise connection succeeded warning"""
         with patch(f"{class_name}.sftp_connection", new_callable=PropertyMock):
@@ -101,7 +101,7 @@ class TestDbBackup(common.TransactionCase):
                 rec_id.action_sftp_test_connection()
         _.assert_called_once_with("Connection Test Succeeded!")
 
-    @patch(f"{model}._")
+    @patch(f"{model}.api.Environment._")
     def _test_action_sftp_test_connection_fail(self, _):
         """It should raise connection fail warning"""
         with patch(f"{class_name}.sftp_connection", new_callable=PropertyMock) as conn:
@@ -168,11 +168,11 @@ class TestDbBackup(common.TransactionCase):
                     conn.open.assert_called_once_with(assets["os"].path.join(), "wb")
 
     def test_action_backup_all_search(self):
-        """It should search all records"""
+        """It should search all records."""
         rec_id = self.new_record()
         with patch(f"{class_name}.search", new_callable=PropertyMock):
             rec_id.action_backup_all()
-            rec_id.search.assert_called_once_with([])
+            rec_id.search.assert_called_once_with([], limit=False)
 
     def test_action_backup_all_return(self):
         """It should return result of backup operation"""

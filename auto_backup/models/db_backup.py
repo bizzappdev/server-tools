@@ -13,7 +13,7 @@ from glob import iglob
 
 import pysftp
 
-from odoo import _, api, exceptions, fields, models, tools
+from odoo import api, exceptions, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.service import db
 
@@ -25,14 +25,15 @@ class DbBackup(models.Model):
     _name = "db.backup"
     _inherit = "mail.thread"
 
-    _sql_constraints = [
-        ("name_unique", "UNIQUE(name)", "Cannot duplicate a configuration."),
-        (
-            "days_to_keep_positive",
-            "CHECK(days_to_keep >= 0)",
-            "I cannot remove backups from the future. Ask Doc for that.",
-        ),
-    ]
+    _name_unique = models.Constraint(
+        "UNIQUE(name)",
+        "Cannot duplicate a configuration.",
+    )
+
+    _days_to_keep_positive = models.Constraint(
+        "CHECK(days_to_keep >= 0)",
+        "I cannot remove backups from the future. Ask Doc for that.",
+    )
 
     name = fields.Char(
         compute="_compute_name",
@@ -127,7 +128,7 @@ class DbBackup(models.Model):
         try:
             # Just open and close the connection
             with self.sftp_connection():
-                raise UserError(_("Connection Test Succeeded!"))
+                raise UserError(self.env._("Connection Test Succeeded!"))
         except (
             pysftp.CredentialException,
             pysftp.ConnectionException,
@@ -194,7 +195,7 @@ class DbBackup(models.Model):
     @api.model
     def action_backup_all(self):
         """Run all scheduled backups."""
-        return self.search([]).action_backup()
+        return self.search([], limit=False).action_backup()
 
     @contextmanager
     def backup_log(self):
@@ -206,12 +207,15 @@ class DbBackup(models.Model):
             _logger.exception(f"Database backup failed: {self.name}")
             escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
-                body=f"<p>{_('Database backup failed.')}</p><pre>{escaped_tb}</pre>",
+                body=(
+                    f"<p>{self.env._('Database backup failed.')}</p>"
+                    f"<pre>{escaped_tb}</pre>"
+                ),
                 subtype_id=self.env.ref("auto_backup.mail_message_subtype_failure").id,
             )
         else:
             _logger.info(f"Database backup succeeded: {self.name}")
-            self.message_post(body=_("Database backup succeeded."))
+            self.message_post(body=self.env._("Database backup succeeded."))
 
     def cleanup(self):
         """Clean up old backups."""
@@ -250,7 +254,7 @@ class DbBackup(models.Model):
             escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
                 body=(
-                    f"<p>{_('Cleanup of old database backups failed.')}</p>"
+                    f"<p>{self.env._('Cleanup of old database backups failed.')}</p>"
                     f"<pre>{escaped_tb}</pre>"
                 ),
                 subtype_id=self.env.ref("auto_backup.failure").id,
